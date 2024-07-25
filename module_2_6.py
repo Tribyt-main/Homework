@@ -1,22 +1,19 @@
 calls = 0
 def count_calls():
-        global calls
-calls += 1
-def string_info(b):
-    tuple([len(b), b.upper(), b.lower()])
-string_info('alek')
-calls += 1
-def is_counts():
-    a = 'Alek'
-    b = ['alek', 'Alak', 'Ylek']
-    a.lower()
+    global calls
+    calls += 1
+count_calls()
+def string_info(string):
+    string = len(string), string.upper(), string.lower()
+    return string
+count_calls()
+print(string_info('Alek'))
+def is_counts(a,b):
     for i in b:
-        if i == a.lower():
-            print(True)
-            break
+        if a.lower() == i.lower():
+            return True
         else:
-            print(False)
-            break
-calls += 1
-is_counts()
+            return False
+count_calls()
+print(is_counts('A', ['a', 'b', 'c']))
 print(calls)
