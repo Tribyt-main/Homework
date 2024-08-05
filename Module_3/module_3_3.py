@@ -7,4 +7,6 @@ values_list_2 = [1, True]
 print_params(*values_list_2, 42)
 print_params(**values_dict)
 print_params()
-print(2,3,4)
+print_params(1, 2, 3)
+print_params(b= 1)
+print_params(c = [1, 2, 3])
