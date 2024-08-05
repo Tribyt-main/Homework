@@ -6,8 +6,4 @@ for x in numbers_1:
     for i in numbers_1:
         if random_number % (x + i) == 0 and x < i:
             a += str(x) + str(i)
-            # if x != i:
-            #     if x > i:
 print(random_number, '-', a)
-
-15 - 1214114232133124115106978
