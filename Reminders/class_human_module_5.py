@@ -21,4 +21,3 @@ class Human:
 den = Human('Денис', 22)
 max_ = Human('Макс', 22)
 max_.birthdey()
-print(len(den))
