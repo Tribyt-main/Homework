@@ -1,4 +1,7 @@
 class Human:
+
+    head = True
+
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -35,6 +38,4 @@ class Human:
 
 den = Human('Денис', 22)
 max_ = Human('Макс', 22)
-print(max_)
-print(den == max_)
-max_.birthdey()
+print(Human.head)
