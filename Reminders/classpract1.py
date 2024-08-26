@@ -50,4 +50,3 @@ if __name__ == '__main__':
                 continue  # exit('Пароли не совпадают!')
             else:
                 database.add_user(user.username, user.password)
-        print(database.data)
