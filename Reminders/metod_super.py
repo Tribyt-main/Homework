@@ -31,6 +31,7 @@ class Student(Human, Students_group):  # Обращение к родитель�
         print(f'Я живу в {self.place}')
 
 
+
 # human = Human('Лёлик','python one')
 student = Student('Лелик', 'Общага', 'python one')
 print(Student.mro())  # Проверка цепочки наследования,

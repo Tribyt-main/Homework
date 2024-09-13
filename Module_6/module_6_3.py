@@ -5,7 +5,6 @@ class Hours:
     def run(self, dx):
         self.x_distance += dx
 
-
 class Eagle:
     y_distance = 0
     sound = 'I train, eat, sleep, and repeat'
