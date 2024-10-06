@@ -2,7 +2,6 @@ def apply_all_func(int_list, *functions):
     results = {}
     for function in functions:
         results[function] = function(int_list)
-
     return results
 
 
