@@ -6,3 +6,4 @@ first_result = (len(item[0]) - len(item[1]) for item in zp if
 print(list(first_result))
 second_result = (len(first[i]) == len(second[i]) for i in range(len(first)))
 print(list(second_result))
+
