@@ -1,4 +1,3 @@
-import random
 from random import choice
 
 first = 'Мама мыла раму'
