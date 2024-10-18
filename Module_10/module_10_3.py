@@ -4,21 +4,19 @@ import time
 
 
 class Bank:
-    def __init__(self, balance):
-        self.balance = balance
+    def __init__(self):
+        self.balance = 0
         self.lock = Lock()
 
     def deposit(self):
-        self.lock.acquire()
         self.balance = 0
         dep = randint(50, 500)
         self.balance += dep
         time.sleep(0.01)
         print(f'Баланс пополнился на {dep},\n'
               f'Текущий баланс {self.balance}')
-        if self.balance >= 500:
+        if self.balance >= 500 or self.lock.locked():
             self.lock.release()
-
 
     def take(self):
         take = randint(50, 500)
@@ -31,7 +29,7 @@ class Bank:
             self.lock.acquire()
 
 
-bk = Bank
+bk = Bank()
 
 
 def main():
