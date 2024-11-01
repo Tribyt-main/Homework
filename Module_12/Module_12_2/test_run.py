@@ -1,3 +1,4 @@
+import unittest
 from pprint import pprint
 from unittest import TestCase
 from Module_12.Module_12_2.runner_and_tournament import Runner
@@ -5,10 +6,13 @@ from Module_12.Module_12_2.runner_and_tournament import Tournament
 
 
 class TournamentTest(TestCase):
+    is_frozen = True
+
     @classmethod
     def setUpClass(cls):
         cls.all_results = []
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def setUp(self):
         self.usein = Runner('Усейн', speed=10)
         self.andrei = Runner('Андрей', speed=9)

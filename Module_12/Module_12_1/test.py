@@ -1,9 +1,12 @@
+import unittest
 from unittest import TestCase
 
 from Module_12.Module_12_1.runner import runner, runner2
 
 
 class TestRunner(TestCase):
+    is_frozen = False
+    @unittest.skipIf(is_frozen, 'Ок')
     def test_walk(self):
         runner.distance = 0
         for i in range(0, 10):
