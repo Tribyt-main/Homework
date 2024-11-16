@@ -5,11 +5,11 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 import asyncio
 
-api = '7625107349:AAGDX_qom1brpRbKKG5YF70uaympz3nw8Zs'
+api = ''
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
-keyboard = ReplyKeyboardMarkup()
+keyboard = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 man = KeyboardButton(text='Мужчина')
 woman = KeyboardButton(text='Женщина')
 keyboard.add(man)
