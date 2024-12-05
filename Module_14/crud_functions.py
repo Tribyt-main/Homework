@@ -1,12 +1,11 @@
 import sqlite3
+import pprint
 
-from Module_14.module_14_4 import product1
+connection = sqlite3.connect('initiate_db')
+cursor = connection.cursor()
 
 
 def initiate_db():
-    connection = sqlite3.connect('initiate_db')
-    cursor = connection.cursor()
-
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS Products
     (id INTEGER PRIMARY KEY,
@@ -22,8 +21,15 @@ def initiate_db():
     connection.close()
 
 
-connection = sqlite3.connect('initiate_db')
-cursor = connection.cursor()
+def get_all_products():
+    cursor.execute('SELECT * From Products')
+    result = cursor.fetchall()
+    for i in result:
+        print(i)
+
+
+get_all_products()
+
 cursor.execute('SELECT id, title, description, price FROM Products WHERE id = 1')
 products = cursor.fetchone()
 product_1 = (f'{products[1]} | {products[2]} | {products[3]}')
