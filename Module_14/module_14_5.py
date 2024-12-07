@@ -4,9 +4,10 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+
 from crud_functions import *
 
-api = ''
+api = '7625107349:AAGDX_qom1brpRbKKG5YF70uaympz3nw8Zs'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
@@ -76,11 +77,10 @@ async def update_email(message, state):
 async def update_age(message, state):
     await state.update_data(age= message.text)
     data = await state.get_data()
-    data = cursor.execute("SELECT id, username, email, age, balance FROM Users").fetchall()
-    username = data[1]
-    email = data[2]
-    age = data[3]
-    await add_user(username, email, age)
+    username = data['username']
+    email = data['email']
+    age = data['age']
+    add_user(username, email, age)
     await state.finish()
 
 

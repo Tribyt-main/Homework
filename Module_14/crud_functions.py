@@ -1,5 +1,6 @@
 import sqlite3
 
+
 connection = sqlite3.connect('initiate_db')
 cursor = connection.cursor()
 
@@ -55,15 +56,14 @@ products = cursor.fetchone()
 product_4 = (f'{products[1]} | {products[2]} | {products[3]}')
 
 
-def add_user(username, email, age, balance = 1000):
+def add_user(username, email, age):
     check_user = cursor.execute('SELECT * FROM Users WHERE username =?', (username,))
     if check_user.fetchone() is None:
-        cursor.execute(f'''
-INSERT INTO Users VALUES('{username}', '{email}' , '{age}', 0)
-''')
+        balance = 1000
+        cursor.execute('INSERT INTO Users (username, email, age, balance) VALUES (?,?,?,?)',(f'{username}', f'{email}' , f'{age}',f'{balance}'))
+    connection.commit()
 
 
-connection.commit()
 
 
 def is_included(username):
