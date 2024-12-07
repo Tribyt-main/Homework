@@ -7,7 +7,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 from crud_functions import *
 
-api = ''
+api = '7625107349:AAGDX_qom1brpRbKKG5YF70uaympz3nw8Zs'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
@@ -81,6 +81,7 @@ async def update_age(message, state):
     email = data['email']
     age = data['age']
     add_user(username, email, age)
+    await message.answer('Регистрация прошла успешно!')
     await state.finish()
 
 
