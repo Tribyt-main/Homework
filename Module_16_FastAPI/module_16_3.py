@@ -16,7 +16,7 @@ async def user_add(
         username: Annotated[str, Path(min_length=3,
                                       max_length=20,
                                       description='Enter your name',
-                                      exeption='Alek')],
+                                      example='Alek')],
         age: Annotated[int, Path(ge=18,
                                  le=120,
                                  description='Enter your age')]
@@ -28,10 +28,11 @@ async def user_add(
 
 @app.put('/user/{user_id}/{username}/{age}')
 async def user_update(
-        user_id: int, username: Annotated[str, Path(min_length=3,
+        user_id: int,
+        username: Annotated[str, Path(min_length=3,
                                                     max_length=20,
                                                     description='Enter your name',
-                                                    exeption='Alek')],
+                                                    example='Alek')],
         age: Annotated[int, Path(ge=18,
                                  le=120,
                                  description='Enter your age')]
