@@ -1,11 +1,11 @@
-from fastapi import FastAPI, Path, HTTPException
-from typing import Annotated
+from typing import List
+from fastapi import FastAPI, HTTPException, Path
 from pydantic import BaseModel
+from typing_extensions import Annotated
 
 app = FastAPI()
 
-# users = {1: 'Имя: Exemple, Возраст: 18'}
-users = []
+users: List[dict] = []
 
 
 class User(BaseModel):
@@ -15,48 +15,37 @@ class User(BaseModel):
 
 
 @app.get('/users')
-async def users_db():
+async def get_users() -> List[User]:
     return users
 
 
-@app.post('/users/{username}/{age}')
-async def user_add(
-        username: Annotated[str, Path(min_length=3,
-                                      max_length=20,
-                                      description='Enter your name',
-                                      example='Alek')],
-        age: Annotated[int, Path(ge=18,
-                                 le=120,
-                                 description='Enter your age')]
-):
-    user = User(id=len(users) + 1, username=username, age=age)
-    users.append(user.model_dump())
-    return user
-
-@app.put('/users/{user_id}/{username}/{age}')
-async def user_update(
-        user_id: int,
-        username: Annotated[str, Path(min_length=3,
-                                      max_length=20,
-                                      description='Enter your name',
-                                      example='Alek')],
-        age: Annotated[int, Path(ge=18,
-                                 le=120,
-                                 description='Enter your age')]
-):
-    try:
-        for user in users:
-            if user['id'] == user_id:
-                user['username'] = username
-                user['age'] = age
-            return User(**user)
-    except IndexError:
-        raise HTTPException(status_code=404, detail='User not found')
+@app.post('/user/{username}/{age}')
+async def post_user(
+        username: Annotated[str, Path(title="Enter username", min_length=1, max_length=50)],
+        age: Annotated[int, Path(title="Enter age", ge=0, le=120)]) -> User:
+    new_id = users[-1]['id'] + 1 if users else 1
+    new_user = User(id=new_id, username=username, age=age)
+    users.append(new_user.model_dump())
+    return new_user
 
 
-@app.delete('/users/{user_id}')
-async def user_deleted(user_id: int):
+@app.put('/user/{user_id}/{username}/{age}')
+async def update_user(
+        user_id: Annotated[int, Path(title="Enter User ID")],
+        username: Annotated[str, Path(title="Enter username", min_length=1, max_length=50)],
+        age: Annotated[int, Path(title="Enter age", ge=0, le=120)]) -> User:
     for user in users:
         if user['id'] == user_id:
-            del user
-        return f'User{user_id} is deleted'
+            user['username'] = username
+            user['age'] = age
+            return User(**user)
+    raise HTTPException(status_code=404, detail="User was not found")
+
+
+@app.delete('/user/{user_id}')
+async def delete_user(user_id: Annotated[int, Path(title="Enter User ID")]) -> User:
+    for index, user in enumerate(users):
+        if user['id'] == user_id:
+            removed_user = users.pop(index)
+            return User(**removed_user)
+    raise HTTPException(status_code=404, detail="User was not found")

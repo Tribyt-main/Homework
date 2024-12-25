@@ -30,9 +30,9 @@ async def user_add(
 async def user_update(
         user_id: int,
         username: Annotated[str, Path(min_length=3,
-                                                    max_length=20,
-                                                    description='Enter your name',
-                                                    example='Alek')],
+                                      max_length=20,
+                                      description='Enter your name',
+                                      example='Alek')],
         age: Annotated[int, Path(ge=18,
                                  le=120,
                                  description='Enter your age')]
