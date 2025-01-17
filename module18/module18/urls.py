@@ -17,16 +17,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from task2.views import func_templates, class_temp, main_page
+# from task2.views import func_templates, class_temp, main_page
+#
+# from task3.views import main_page_task3, shop_page, basket_page
 
-from task3.views import main_page_task3, shop_page, basket_page
-
+from task4.views import main_page_task4, shop_page, basket_page
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # task2
     # path('', main_page),
     # path('functemp/', func_templates),
     # path('classtemp/', class_temp.as_view()),  #.as_view для запуска классового метода
-    path('', main_page_task3),
+    # task3
+    # path('', main_page_task3),
+    # path('shop/', shop_page),
+    # path('basket/', basket_page),
+    # task4
+    path('', main_page_task4),
     path('shop/', shop_page),
     path('basket/', basket_page),
 ]
+

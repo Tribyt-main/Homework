@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "main_page_task4.html" %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Games</title>
+</head>
+<body>
+{% block pagename %}
+<h1>Магазин</h1>
+{% endblock %}
+{% block menu %}
+{{ block.super }}
+{% endblock %}
+{% block content %}
+    <h1>Игры</h1>
+    <ul>
+        {% for game in list_games%}
+        <li> {{ game }} <button> Купить </button></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+</body>
+</html>
