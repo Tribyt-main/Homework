@@ -9,7 +9,7 @@ def shop_page(request):
     games = {'games': ["Atomic Heart", "Cyberpunk 2077", "PayDay 2"]}
     list_games = games.get('games')
     context = {
-        'list_games': list_games
+        'list_games': list_games,
     }
     return render(request, 'fourth_task/shop_page.html', context)
 

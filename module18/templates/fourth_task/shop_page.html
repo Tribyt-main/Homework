@@ -19,8 +19,9 @@
 {% block content %}
     <h1>Игры</h1>
     <ul>
+
         {% for game in list_games %}
-        <li><h3>{{ game }} <button> Купить </button></h3> </li>
+      <li><h3>{{ game }} <a href="/basket"> <button>Купить</button> </a></h3></li>
         {% endfor %}
     </ul>
 {% endblock %}

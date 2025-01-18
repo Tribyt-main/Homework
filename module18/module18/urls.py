@@ -22,6 +22,8 @@ from django.urls import path
 # from task3.views import main_page_task3, shop_page, basket_page
 
 from task4.views import main_page_task4, shop_page, basket_page
+from task5.views import sign_up_by_django, sign_up_by_html
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # task2
@@ -36,5 +38,5 @@ urlpatterns = [
     path('', main_page_task4),
     path('shop/', shop_page),
     path('basket/', basket_page),
+    path('registration/', sign_up_by_html)
 ]
-
